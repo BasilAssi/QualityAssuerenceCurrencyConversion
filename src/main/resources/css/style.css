@@ -1,0 +1,62 @@
+section{
+    margin: auto;
+    width: 50%;
+    /* Additional styles */
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.Home{
+    display: flex;
+}
+.horizontal-line {
+    width: 340px;
+    border-top: 5px solid #ccc;
+  }
+  .horizontal-line1 {
+    width: 340px;
+    border-top: 5px solid #ccc;
+  }
+  
+input[type="text"] {
+    width: 270px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  #myInput {
+    background-color: #f5f5f5;
+    color: #333;
+    
+  }
+  
+  select[name="myInput"],
+  select#myInput {
+    width: 280px;
+    height: 45px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  .blue-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .view1{
+    width:300px ;
+  }
+  .view2{
+    margin-left: 150px;
+    margin-top: 20px;
+  }
