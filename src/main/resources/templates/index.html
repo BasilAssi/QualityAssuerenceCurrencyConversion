@@ -6,6 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
+    <style>
+        section{
+            margin: auto;
+            width: 50%;
+            /* Additional styles */
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .Home{
+            display: flex;
+        }
+        .horizontal-line {
+            width: 340px;
+            border-top: 5px solid #ccc;
+        }
+        .horizontal-line1 {
+            width: 340px;
+            border-top: 5px solid #ccc;
+        }
+
+        input[type="text"] {
+            width: 270px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        #myInput {
+            background-color: #f5f5f5;
+            color: #333;
+
+        }
+
+        select[name="myInput"],
+        select#myInput {
+            width: 280px;
+            height: 45px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .blue-button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .view1{
+            width:300px ;
+        }
+        .view2{
+            margin-left: 150px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <p th:text="${result}"></p>
@@ -26,8 +90,8 @@
                 <br>
                 <div class="">
                     <select name="myInput" id="sourceId">
-                        <option value="option1">db</option>
-                        <option value="option2">api</option>
+                        <option value="db">db</option>
+                        <option value="api">api</option>
 
                     </select>
                 </div>
@@ -51,17 +115,28 @@
 
             </div>
             <div class="view2">
-                <img src="../image/Capture.PNG" alt="Currency Conversion">
+                <img src="https://raw.githubusercontent.com/BasilAssi/QualityAssuerenceCurrencyConversion/master/src/main/resources/image/Capture.PNG" alt="Currency Conversion">
             </div>
         </div>
 
         <br><br>
-        <button class="blue-button" onclick="convertCurrency()">Convert</button>
+        <button class="blue-button" onclick="myFunction()">Convert</button>
         <br>
         <br>
         <div class="horizontal-line1"></div>
         <br>
-         Result
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border"
+                 role="status" id="loading" style="display: none">
+                <span class="sr-only" style="
+                        color: rgba(255, 0, 0, 0.5);
+                        font-family: 'Arial Rounded MT Bold';
+                        font-size: 50px;
+                ">Loading...</span>
+
+            </div>
+        </div>
+        Result
         <br>
         <div class="">
           <input type="text" name="myInput" id="resultId">
@@ -72,22 +147,25 @@
         <div class="">
           <input type="text" name="myInput" id="rateId">
         </div>
+
+
     </section>
     
 </body>
 <script>
+
+
     let currencyObject = {"USD":1,"AED":3.67,"AFN":87.55,"ALL":102.94,"AMD":386.35,"ANG":1.79,"AOA":547.61,"ARS":235.42,"AUD":1.54,"AWG":1.79,"AZN":1.7,"BAM":1.82,"BBD":2,"BDT":107.22,"BGN":1.82,"BHD":0.376,"BIF":2813.59,"BMD":1,"BND":1.35,"BOB":6.92,"BRL":4.96,"BSD":1,"BTN":82.77,"BWP":13.68,"BYN":2.83,"BZD":2,"CAD":1.36,"CDF":2259.1,"CHF":0.905,"CLP":806.79,"CNY":7.08,"COP":4454.97,"CRC":537.88,"CUP":24,"CVE":102.81,"CZK":22.03,"DJF":177.72,"DKK":6.96,"DOP":54.63,"DZD":136.69,"EGP":30.86,"ERN":15,"ETB":54.66,"EUR":0.932,"FJD":2.24,"FKP":0.811,"FOK":6.96,"GBP":0.811,"GEL":2.59,"GGP":0.811,"GHS":11.54,"GIP":0.811,"GMD":59.18,"GNF":8571.84,"GTQ":7.8,"GYD":211.69,"HKD":7.83,"HNL":24.58,"HRK":7.03,"HTG":141.57,"HUF":347.58,"IDR":14967.43,"ILS":3.73,"IMP":0.811,"INR":82.77,"IQD":1309.96,"IRR":42010.72,"ISK":140.81,"JEP":0.811,"JMD":154.16,"JOD":0.709,"JPY":139.8,"KES":138.14,"KGS":87.63,"KHR":4106.28,"KID":1.54,"KMF":458.7,"KRW":1327.86,"KWD":0.307,"KYD":0.833,"KZT":446.13,"LAK":17788.53,"LBP":15000,"LKR":302.97,"LRD":170.36,"LSL":19.71,"LYD":4.81,"MAD":10.21,"MDL":17.77,"MGA":4397.7,"MKD":57.18,"MMK":2101.55,"MNT":3496.24,"MOP":8.07,"MRU":34.41,"MUR":45.48,"MVR":15.43,"MWK":1030.79,"MXN":17.85,"MYR":4.62,"MZN":64.39,"NAD":19.71,"NGN":460.77,"NIO":36.57,"NOK":11.03,"NPR":132.43,"NZD":1.65,"OMR":0.384,"PAB":1,"PEN":3.69,"PGK":3.54,"PHP":56.05,"PKR":285.34,"PLN":4.2,"PYG":7198.12,"QAR":3.64,"RON":4.62,"RSD":109.17,"RUB":80.08,"RWF":1156.42,"SAR":3.75,"SBD":8.51,"SCR":13.21,"SDG":556.04,"SEK":10.81,"SGD":1.35,"SHP":0.811,"SLE":22.7,"SLL":22698.68,"SOS":568.76,"SRD":37.54,"SSP":965.31,"STN":22.84,"SYP":2495.72,"SZL":19.71,"THB":34.66,"TJS":10.91,"TMT":3.5,"TND":3.1,"TOP":2.34,"TRY":19.97,"TTD":6.77,"TVD":1.54,"TWD":30.8,"TZS":2364.41,"UAH":36.94,"UGX":3738.2,"UYU":38.78,"UZS":11421.34,"VES":26.13,"VND":23516.74,"VUV":119.32,"WST":2.71,"XAF":611.61,"XCD":2.7,"XDR":0.753,"XOF":611.61,"XPF":111.26,"YER":250.25,"ZAR":19.71,"ZMW":19.19,"ZWL":1955.64};
 
     let select = document.getElementById('currencySelect');
     let select2 = document.getElementById('currencySelect2');
-
-
+    //let select = document.getElementById('currencySelect');
+    //let select2 = document.getElementById('currencySelect2');
     for(let currency in currencyObject) {
         let option = document.createElement('option');
         option.text = currency;
         option.value = currency;
         select.add(option);
-
     }
     for(let currency in currencyObject) {
         let option = document.createElement('option');
@@ -96,48 +174,60 @@
         select2.add(option);
 
     }
+    let x="ILS";
+    let y="EUR";
+    let a=100;
+    let z="api";
 
-    function convertCurrency() {
+
+    //fetch(`http://localhost:8080/convertCurrency?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}&source=${source}`)
+
+    function myFunction() {
+        document.getElementById('loading').style.display = 'block';
         let fromCurrency = document.getElementById('currencySelect').value;
+        console.log(fromCurrency);
         let toCurrency = document.getElementById('currencySelect2').value;
+        console.log(toCurrency);
         let amount = document.getElementById('amountId').value;
+        console.log(amount);
         let source = document.getElementById('sourceId').value;
+        console.log(source);
+        const api_url = `http://localhost:8080/convertCurrency?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}&source=${source}`
+        //const api_url =`http://localhost:8080/convertCurrency?fromCurrency=${x}&toCurrency=${y}&amount=${a}&source=${z}`
+        // Defining async function
+        async function getapi(url) {
 
-        fetch(`http://localhost:8080/convertCurrency?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}&source=${source}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.errorMessage) {
-                    console.error('Error:', data.errorMessage);
-                } else {
-                    document.getElementById('resultId').value = data.finalResult;
-                    document.getElementById('rateId').value = data.rate;
-                }
-            })
-            .catch(error => console.error('Error:', error));
+            // Storing response
+            const response = await fetch(url);
+
+            // Storing data in form of JSON
+            var data = await response.json();
+            console.log(data.rate);
+            var text =document.getElementById("resultId");//.innerHTML += ;
+            if (text.value !="") {
+                text.value = "";
+            }
+            text.value += data.rate;
+            var text1=document.getElementById("rateId");//.innerHTML += data.;
+            if (text1.value !="") {
+                text1.value = "";
+            }
+            text1.value += data.finalResult;
+            if (response) {
+                hideloader();
+            }
+            //show(data);
+
+        }
+        // Calling that async function
+        getapi(api_url);
+        function hideloader() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+
     }
 
-
-
-    // function convertCurrency() {
-    //     let fromCurrency = document.getElementById('currencySelect').value;
-    //     let toCurrency = document.getElementById('currencySelect2').value;
-    //     let amount = document.getElementById('amountId').value;
-    //     let source = document.getElementById('sourceId').value;
-    //
-    //     fetch(`http://localhost:8080/convertCurrency?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}&source=${source}`)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             document.getElementById('resultId').value = data.finalResult;
-    //             document.getElementById('rateId').value = data.rate;
-    //         })
-    //         .catch(error => console.error('Error:', error));
-    // }
-    //
 
 </script>
 
